@@ -1,0 +1,14 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual env
+venv/
+env/
+crud_env/
+
+# Secrets
+.env
+
+# Static files (optional, if collected locally)
+staticfiles/
