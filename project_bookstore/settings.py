@@ -1,7 +1,8 @@
 from pathlib import Path
 import os
-import dj_database_url
-from dotenv import load_dotenv
+import dj_database_url  # type: ignore
+from dotenv import load_dotenv # type: ignore
+from decouple import config # type: ignore
 
 # Load environment variables from .env file
 load_dotenv()
@@ -9,12 +10,12 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-local-fallback")
+SECRET_KEY = config("SECRET_KEY", "django-insecure-local-fallback")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = config("DEBUG", cast = bool)
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost,10.0.2.2").split(",")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
 # Application definition
 INSTALLED_APPS = [
@@ -82,18 +83,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project_bookstore.wsgi.application'
 
 # Database configuration using dj-database-url
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL", "postgres://postgres:123456@localhost:5432/mobileapp1"),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
 
+DATABASES = {
+    'default': dj_database_url.parse(config("DATABASE_URL"))
+}
+      
+  
 # Static files
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Optional
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Optional
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

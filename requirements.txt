@@ -1,32 +1,14 @@
-# Core Django
-Django>=4.2
-
-# PostgreSQL database adapter
-psycopg2-binary>=2.9
-
-# For managing environment variables
-python-decouple>=3.8
-
-# For handling CORS (Cross-Origin Resource Sharing)
-django-cors-headers>=4.3
-
-# For Django REST API support
-djangorestframework>=3.14
-
-# For JWT-based Authentication
-djangorestframework-simplejwt>=5.3
-
-# Optional (useful for auto-generating API docs)
-drf-yasg>=1.21
-
-# Optional (if using dotenv instead of decouple)
-# python-dotenv>=1.0
-
-pip install dj-database-url
-pip install python-dotenv 
-pip install gunicorn
-
-
-
-
-pip install -r requirements.txt
+asgiref==3.8.1
+dj-database-url==3.0.0
+Django==5.2
+django-cors-headers==4.7.0
+djangorestframework==3.16.0
+dotenv==0.9.9
+gunicorn==23.0.0
+packaging==25.0
+psycopg2-binary==2.9.10
+python-decouple==3.8
+python-dotenv==1.1.1
+sqlparse==0.5.3
+typing_extensions==4.14.0
+tzdata==2025.2
